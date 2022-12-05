@@ -1,0 +1,203 @@
+<div class="container mx-auto w-10/12 lg:w-1/4">
+
+  <form [formGroup]="profileForm" (submit)="sendForm()">
+
+
+
+    <div><label for="firstName">Nombre</label>
+      <input type="text" id="firstName" name="firstName" formControlName="firstName" class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full
+        appearance-none rounded-lg border border-solid border-gray-300 bg-white
+        bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all
+        placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+      <!-- ### Start: Displaying errors ###-->
+      <div *ngFor="let error of errorMessages.profileForm">
+        <ng-container *ngIf="firstNameProfileForm!.errors!=null">
+          <ng-container *ngIf="firstNameProfileForm!.errors[error.type]&&(firstNameProfileForm!.touched)">
+            <p class="text-red-500">{{error.message}}</p>
+          </ng-container>
+        </ng-container>
+      </div>
+      <!-- ### End: Displaying errors ###-->
+    </div>
+
+
+    <div><label for="lastName">Apellido</label>
+      <input type="text" id="lastName" name="lastName" formControlName="lastName" class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full
+        appearance-none rounded-lg border border-solid border-gray-300 bg-white
+        bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all
+        placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+      <!-- ### Start: Displaying errors ###-->
+      <div *ngFor="let error of errorMessages.profileForm">
+        <ng-container *ngIf="lastNameProfileForm!.errors!=null">
+          <ng-container *ngIf="lastNameProfileForm!.errors[error.type]&&(lastNameProfileForm!.touched)">
+            <p class="text-red-500">{{error.message}}</p>
+          </ng-container>
+        </ng-container>
+      </div>
+      <!-- ### End: Displaying errors ###-->
+    </div>
+
+
+    <div><label for="password">Contraseña</label>
+      <input type="password" id="password" name="password" formControlName="password" class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full
+      appearance-none rounded-lg border border-solid border-gray-300 bg-white
+      bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all
+      placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+      <!-- ### Start: Displaying errors ###-->
+      <div *ngFor="let error of errorMessages.profileForm">
+        <ng-container *ngIf="passwordProfileForm!.errors!=null">
+          <ng-container *ngIf="passwordProfileForm!.errors[error.type]&&(passwordProfileForm!.touched)">
+            <p class="text-red-500">{{error.message}}</p>
+          </ng-container>
+        </ng-container>
+      </div>
+      <!-- ### End: Displaying errors ###-->
+    </div>
+
+
+    <div class="flex items-center mb-4">
+      <input type="checkbox" id="policyAcceptance" name="policyAcceptance" formControlName="policyAcceptance" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600
+      dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+      <label for="policyAcceptance" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Acepto
+        politicas</label>
+      <!-- ### Start: Displaying errors ###-->
+      <div *ngFor="let error of errorMessages.profileForm">
+        <ng-container *ngIf="policyAcceptanceProfileForm!.errors!=null">
+          <ng-container *ngIf="policyAcceptanceProfileForm!.errors[error.type]&&(policyAcceptanceProfileForm!.touched)">
+            <p class="text-red-500">{{error.message}}</p>
+          </ng-container>
+        </ng-container>
+      </div>
+      <!-- ### End: Displaying errors ###-->
+    </div>
+
+
+
+
+    <div formGroupName="address">
+      <h3 class="font-bold">Address</h3>
+      <div>
+        <label for="name">Street</label>
+        <input type="text" id="name" name="name" formControlName="street" class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full
+        appearance-none rounded-lg border border-solid border-gray-300 bg-white
+        bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all
+        placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+      </div>
+      <div>
+        <label for="name">Zip code</label>
+        <input type="text" id="name" name="name" formControlName="zip" class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full
+        appearance-none rounded-lg border border-solid border-gray-300 bg-white
+        bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all
+        placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+      </div>
+    </div>
+
+    <div formArrayName="aliases">
+      <h3 class="font-bold">Aliases</h3>
+      <div class="flex flex-column justify-center md:flex-row">
+        <button type="button" class="grow  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+          (click)="addAlias()">+ Add</button>
+        <button type="button" class="grow  bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
+          (click)="removeAlias()">- Remove</button>
+      </div>
+
+      <div *ngFor="let alias of aliases.controls; let i=index">
+        <!-- The repeated alias template -->
+        <label for="alias-{{ i }}">Alias:</label>
+        <input id="alias-{{ i }}" type="text" [formControlName]="i" class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full
+        appearance-none rounded-lg border border-solid border-gray-300 bg-white
+        bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all
+        placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+      </div>
+    </div>
+
+    <div formArrayName="products">
+      <h3 class="font-bold">Products</h3>
+      <div class="flex flex-column justify-center md:flex-row">
+        <button type="button" class="grow  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+          (click)="addProduct()">+ Add</button>
+        <button type="button" class="grow  bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
+          (click)="removeProduct()">- Remove</button>
+      </div>
+      <div *ngFor="let product of products.controls; let i=index">
+        <!-- The repeated alias template -->
+        <div [formGroupName]="i">
+
+
+
+          <div>
+            <label for="sku">SKU</label>
+            <input type="text" id="sku" name="sku" formControlName="sku" class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full
+            appearance-none rounded-lg border border-solid border-gray-300 bg-white
+            bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all
+            placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+            <!-- ### Start: Displaying errors ### -->
+            <div *ngFor="let error of errorMessages.profileForm">
+              <ng-container *ngIf="products.at(i).get('sku')?.errors!=null">
+                <ng-container *ngIf="products.at(i).get('sku')?.errors![error.type]&&(products.at(i)!.get('sku')!.touched)">
+                  <p class="text-red-500">{{error.message}}</p>
+                </ng-container>
+              </ng-container>
+            </div>
+            <!-- ### End: Displaying errors ###-->
+          </div>
+
+          <div>
+            <label for="concept">Concept</label>
+            <input type="text" id="concept" name="concept" formControlName="concept" class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full
+            appearance-none rounded-lg border border-solid border-gray-300 bg-white
+            bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all
+            placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+            <!-- ### Start: Displaying errors ### -->
+            <div *ngFor="let error of errorMessages.profileForm">
+              <ng-container *ngIf="products.at(i).get('concept')?.errors!=null">
+                <ng-container *ngIf="products.at(i).get('concept')?.errors![error.type]&&(products.at(i)!.get('concept')!.touched)">
+                  <p class="text-red-500">{{error.message}}</p>
+                </ng-container>
+              </ng-container>
+            </div>
+            <!-- ### End: Displaying errors ###-->
+          </div>
+
+          <div>
+            <label for="subtotal">Subtotal</label>
+            <input type="text" id="subtotal" name="subtotal" formControlName="subtotal" class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full
+            appearance-none rounded-lg border border-solid border-gray-300 bg-white
+            bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all
+            placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+            <!-- ### Start: Displaying errors ### -->
+            <div *ngFor="let error of errorMessages.profileForm">
+              <ng-container *ngIf="products.at(i).get('subtotal')?.errors!=null">
+                <ng-container *ngIf="products.at(i).get('subtotal')?.errors![error.type]&&(products.at(i)!.get('subtotal')!.touched)">
+                  <p class="text-red-500">{{error.message}}</p>
+                </ng-container>
+              </ng-container>
+            </div>
+            <!-- ### End: Displaying errors ###-->
+          </div>
+
+          <button type="button" class="grow  bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
+          (click)="removeP(i)">- Remove</button>
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <button [disabled]="profileForm.invalid" class="my-5 w-full" [ngClass]="!profileForm.invalid ? '
+      bg-transparent hover:bg-blue-500 text-blue-700 font-semibold
+       hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent
+       rounded-full
+      ': '
+      bg-blue-500 text-white font-bold py-2 px-4 rounded-full opacity-50 cursor-not-allowed
+      '">
+      Send form
+    </button>
+
+  </form>
+
+  {{profileForm.value | json}}
+
+</div>

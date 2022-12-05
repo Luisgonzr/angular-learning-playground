@@ -1,0 +1,17 @@
+
+<div class="file-container" >
+  <form [formGroup]="fileForm" (submit)="uploadFile()">
+    <input type="file" class="file" (change)="onFileChange($event)"
+    (focusout)="touched()" />
+    <div *ngIf="file!.touched&&file!.invalid">
+      <div *ngIf="file!.errors!['required']" class="text-red-500">File required</div>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="fileSource!.value">
+  File name: {{fileSource!.value.name}} <br>
+  <button (click)="clearFile()">Clear file</button>
+</div><br>
+
+<button (click)="uploadFile()">Upload file</button>

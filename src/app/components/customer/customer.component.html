@@ -1,0 +1,238 @@
+<div class="container mx-auto my-10">
+
+  <div class="container mx-auto">
+    <div class="px-10 py-10 shadow-xl rounded-md">
+      <div class="mx-10 my-10">
+
+        <form [formGroup]="customerCreateForm" (submit)="submitCustomerCreateForm()">
+          <div class="flex flex-row gap-10">
+            <div class="basis-1/2">
+              <div><label for="firstName">Nombre</label>
+                <input type="text" id="firstName" name="firstName" formControlName="firstName"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <!-- ### Start: Displaying errors ###-->
+                <div *ngFor="let error of errorMessages.customerCreateForm">
+                  <ng-container *ngIf="firstNameCustomerCreateForm!.errors!=null">
+                    <ng-container
+                      *ngIf="firstNameCustomerCreateForm!.errors[error.type]&&(firstNameCustomerCreateForm!.dirty||firstNameCustomerCreateForm!.touched)">
+                      <p class="text-red-500">{{error.message}}</p>
+                    </ng-container>
+                  </ng-container>
+                </div>
+                <!-- ### End: Displaying errors ###-->
+              </div>
+              <div><label for="lastName">Apellido</label>
+                <input type="text" id="lastName" name="lastName" formControlName="lastName"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <!-- ### Start: Displaying errors ###-->
+                <div *ngFor="let error of errorMessages.customerCreateForm">
+                  <ng-container *ngIf="lastNameCustomerCreateForm!.errors!=null">
+                    <ng-container
+                      *ngIf="lastNameCustomerCreateForm!.errors[error.type]&&(lastNameCustomerCreateForm!.dirty||lastNameCustomerCreateForm!.touched)">
+                      <p class="text-red-500">{{error.message}}</p>
+                    </ng-container>
+                  </ng-container>
+                </div>
+                <!-- ### End: Displaying errors ###-->
+              </div>
+              <div><label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" formControlName="email"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <!-- ### Start: Displaying errors ###-->
+                <div *ngFor="let error of errorMessages.customerCreateForm">
+                  <ng-container *ngIf="emailCustomerCreateForm!.errors!=null">
+                    <ng-container
+                      *ngIf="emailCustomerCreateForm!.errors[error.type]&&(emailCustomerCreateForm!.dirty||emailCustomerCreateForm!.touched)">
+                      <p class="text-red-500">{{error.message}}</p>
+                    </ng-container>
+                  </ng-container>
+                </div>
+                <!-- ### End: Displaying errors ###-->
+              </div>
+              <div><label for="street">Calle</label>
+                <input type="text" id="street" name="street" formControlName="street"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <!-- ### Start: Displaying errors ###-->
+                <div *ngFor="let error of errorMessages.customerCreateForm">
+                  <ng-container *ngIf="streetCustomerCreateForm!.errors!=null">
+                    <ng-container
+                      *ngIf="streetCustomerCreateForm!.errors[error.type]&&(streetCustomerCreateForm!.dirty||streetCustomerCreateForm!.touched)">
+                      <p class="text-red-500">{{error.message}}</p>
+                    </ng-container>
+                  </ng-container>
+                </div>
+                <!-- ### End: Displaying errors ###-->
+              </div>
+              <div><label for="externalNumber">Número exterior</label>
+                <input type="text" id="externalNumber" name="externalNumber" formControlName="externalNumber"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <!-- ### Start: Displaying errors ###-->
+                <div *ngFor="let error of errorMessages.customerCreateForm">
+                  <ng-container *ngIf="externalNumberCustomerCreateForm!.errors!=null">
+                    <ng-container
+                      *ngIf="externalNumberCustomerCreateForm!.errors[error.type]&&(externalNumberCustomerCreateForm!.dirty||externalNumberCustomerCreateForm!.touched)">
+                      <p class="text-red-500">{{error.message}}</p>
+                    </ng-container>
+                  </ng-container>
+                </div>
+                <!-- ### End: Displaying errors ###-->
+              </div>
+            </div>
+            <div class="basis-1/2">
+              <div><label for="internalNumber">Número interior</label>
+                <input type="text" id="internalNumber" name="internalNumber" formControlName="internalNumber"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <!-- ### Start: Displaying errors ###-->
+                <div *ngFor="let error of errorMessages.customerCreateForm">
+                  <ng-container *ngIf="internalNumberCustomerCreateForm!.errors!=null">
+                    <ng-container
+                      *ngIf="internalNumberCustomerCreateForm!.errors[error.type]&&(internalNumberCustomerCreateForm!.dirty||internalNumberCustomerCreateForm!.touched)">
+                      <p class="text-red-500">{{error.message}}</p>
+                    </ng-container>
+                  </ng-container>
+                </div>
+                <!-- ### End: Displaying errors ###-->
+              </div>
+              <div><label for="neighborhood">Colonia</label>
+                <input type="text" id="neighborhood" name="neighborhood" formControlName="neighborhood"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <!-- ### Start: Displaying errors ###-->
+                <div *ngFor="let error of errorMessages.customerCreateForm">
+                  <ng-container *ngIf="neighborhoodCustomerCreateForm!.errors!=null">
+                    <ng-container
+                      *ngIf="neighborhoodCustomerCreateForm!.errors[error.type]&&(neighborhoodCustomerCreateForm!.dirty||neighborhoodCustomerCreateForm!.touched)">
+                      <p class="text-red-500">{{error.message}}</p>
+                    </ng-container>
+                  </ng-container>
+                </div>
+                <!-- ### End: Displaying errors ###-->
+              </div>
+              <div><label for="zipCode">Código postal</label>
+                <input type="text" id="zipCode" name="zipCode" formControlName="zipCode"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <!-- ### Start: Displaying errors ###-->
+                <div *ngFor="let error of errorMessages.customerCreateForm">
+                  <ng-container *ngIf="zipCodeCustomerCreateForm!.errors!=null">
+                    <ng-container
+                      *ngIf="zipCodeCustomerCreateForm!.errors[error.type]&&(zipCodeCustomerCreateForm!.dirty||zipCodeCustomerCreateForm!.touched)">
+                      <p class="text-red-500">{{error.message}}</p>
+                    </ng-container>
+                  </ng-container>
+                </div>
+                <!-- ### End: Displaying errors ###-->
+              </div>
+              <div><label for="city">Ciudad</label>
+                <input type="text" id="city" name="city" formControlName="city"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <!-- ### Start: Displaying errors ###-->
+                <div *ngFor="let error of errorMessages.customerCreateForm">
+                  <ng-container *ngIf="cityCustomerCreateForm!.errors!=null">
+                    <ng-container
+                      *ngIf="cityCustomerCreateForm!.errors[error.type]&&(cityCustomerCreateForm!.dirty||cityCustomerCreateForm!.touched)">
+                      <p class="text-red-500">{{error.message}}</p>
+                    </ng-container>
+                  </ng-container>
+                </div>
+                <!-- ### End: Displaying errors ###-->
+              </div>
+              <div><label>Estado</label><select
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  (change)="change($event)" id="region" formControlName="region">
+                  <option value="xxxx" disabled="xxxx" selected="xxxx"></option>
+                  <option *ngFor="let item of RegionCatalog" value="{{item.id}}">{{item.name}}</option>
+                </select></div>
+            </div>
+          </div>
+
+          <!-- ############# START FORM ARRAY FOR companies#############-->
+
+          <div formArrayName="companies">
+            <h3 class="font-bold">Empresas del cliente</h3>
+            <div class="flex flex-column justify-center md:flex-row">
+              <button type="button"
+                class="grow  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                (click)="addCompany()">Agregar empresa</button>
+              <button type="button"
+                class="grow  bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
+                (click)="removeCompany()">Eliminar empresa</button>
+            </div>
+            <div *ngFor="let company of companies.controls; let i=index">
+              <div [formGroupName]="i">
+                <div><label for="legalName">Razón social</label>
+                  <input type="text" id="legalName" name="legalName" formControlName="legalName" class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full
+                    appearance-none rounded-lg border border-solid border-gray-300 bg-white
+                    bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all
+                    placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                  <!-- ### Start: Displaying errors ###-->
+                  <div *ngFor="let error of errorMessages.customerCreateForm">
+                    <ng-container *ngIf="companies.at(i).get('legalName')?.errors!=null">
+                      <ng-container
+                        *ngIf="companies.at(i).get('legalName')?.errors![error.type]&&(companies.at(i)!.get('legalName')!.touched)">
+                        <p class="text-red-500">{{error.message}}</p>
+                      </ng-container>
+                    </ng-container>
+                  </div>
+                  <!-- ### End: Displaying errors ###-->
+                </div>
+                <div><label for="taxId">RFC</label>
+                  <input type="text" id="taxId" name="taxId" formControlName="taxId" class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full
+                    appearance-none rounded-lg border border-solid border-gray-300 bg-white
+                    bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all
+                    placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                  <!-- ### Start: Displaying errors ###-->
+                  <div *ngFor="let error of errorMessages.customerCreateForm">
+                    <ng-container *ngIf="companies.at(i).get('taxId')?.errors!=null">
+                      <ng-container
+                        *ngIf="companies.at(i).get('taxId')?.errors![error.type]&&(companies.at(i)!.get('taxId')!.touched)">
+                        <p class="text-red-500">{{error.message}}</p>
+                      </ng-container>
+                    </ng-container>
+                  </div>
+                  <!-- ### End: Displaying errors ###-->
+                </div>
+                <div><label for="legalZipCode">Código postal fiscal</label>
+                  <input type="text" id="legalZipCode" name="legalZipCode" formControlName="legalZipCode" class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full
+                    appearance-none rounded-lg border border-solid border-gray-300 bg-white
+                    bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all
+                    placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                  <!-- ### Start: Displaying errors ###-->
+                  <div *ngFor="let error of errorMessages.customerCreateForm">
+                    <ng-container *ngIf="companies.at(i).get('legalZipCode')?.errors!=null">
+                      <ng-container
+                        *ngIf="companies.at(i).get('legalZipCode')?.errors![error.type]&&(companies.at(i)!.get('legalZipCode')!.touched)">
+                        <p class="text-red-500">{{error.message}}</p>
+                      </ng-container>
+                    </ng-container>
+                  </div>
+                  <!-- ### End: Displaying errors ###-->
+                </div>
+                <div><label>Régimen fiscal</label><select
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    (change)="change($event,company)" id="taxSystem" formControlName="taxSystem">
+                    <option value="xxxx" disabled="xxxx" selected="xxxx"></option>
+                    <option *ngFor="let item of TaxSystemCatalog" value="{{item.id}}">{{item.name}}</option>
+                  </select></div>
+                <div><button type="button"
+                    class="grow  bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
+                    (click)="deleteItem(i)">Borrar</button></div>
+              </div>
+            </div>
+          </div>
+          <!-- ############# END FORM ARRAY FOR companies#############-->
+
+          <button [disabled]="customerCreateForm.invalid" class="my-5 w-full" [ngClass]="!customerCreateForm.invalid ? '
+               bg-transparent hover:bg-blue-500 text-blue-700 font-semibold
+                 hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent
+                 rounded-full
+                ': '
+                bg-blue-500 text-white font-bold py-2 px-4 rounded-full opacity-50 cursor-not-allowed
+                '">Send</button>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+
+</div>

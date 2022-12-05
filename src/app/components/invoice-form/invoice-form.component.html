@@ -1,0 +1,220 @@
+<div class="container mx-auto my-10">
+
+  <h1 class="text-center font-thin text-4xl">Crear factura</h1>
+
+  <div class="shadow-xl rounded-md px-10 py-10">
+    <form [formGroup]="invoiceCreateForm" (submit)="submitInvoiceCreateForm()">
+      <div class="grid  grid-cols-2 gap-4">
+        <div>
+          <div>
+            <label for="legalName">Razón social</label>
+
+            <input type="text" id="legalName" name="legalName" formControlName="legalName" class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full
+            appearance-none rounded-lg border border-solid border-gray-300 bg-white
+            bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all
+            placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+
+            <!-- ### Start: Displaying errors ###-->
+            <div *ngFor="let error of errorMessages.invoiceCreateForm">
+              <ng-container *ngIf="legalNameInvoiceCreateForm!.errors!=null">
+                <ng-container
+                  *ngIf="legalNameInvoiceCreateForm!.errors[error.type]&&(legalNameInvoiceCreateForm!.dirty||legalNameInvoiceCreateForm!.touched)">
+                  <p class="text-red-500">{{error.message}}</p>
+                </ng-container>
+              </ng-container>
+            </div>
+            <!-- ### End: Displaying errors ###-->
+          </div>
+
+          <div>
+            <label for="taxId">RFC</label>
+            <input type="text" id="taxId" name="taxId" formControlName="taxId" class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full
+            appearance-none rounded-lg border border-solid border-gray-300 bg-white
+            bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all
+            placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+
+            <!-- ### Start: Displaying errors ###-->
+            <div *ngFor="let error of errorMessages.invoiceCreateForm">
+              <ng-container *ngIf="taxIdInvoiceCreateForm!.errors!=null">
+                <ng-container *ngIf="taxIdInvoiceCreateForm!.errors[error.type]&&(taxIdInvoiceCreateForm!.touched)">
+                  <p class="text-red-500">{{error.message}}</p>
+                </ng-container>
+              </ng-container>
+            </div>
+            <!-- ### End: Displaying errors ###-->
+
+          </div>
+
+          <div>
+            <label for="zipCode">Código postal</label>
+            <input type="text" id="zipCode" name="zipCode" formControlName="zipCode" class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full
+            appearance-none rounded-lg border border-solid border-gray-300 bg-white
+            bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all
+            placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+            <!-- ### Start: Displaying errors ###-->
+            <div *ngFor="let error of errorMessages.invoiceCreateForm">
+              <ng-container *ngIf="zipCodeInvoiceCreateForm!.errors!=null">
+                <ng-container *ngIf="zipCodeInvoiceCreateForm!.errors[error.type]&&(zipCodeInvoiceCreateForm!.touched)">
+                  <p class="text-red-500">{{error.message}}</p>
+                </ng-container>
+              </ng-container>
+            </div>
+            <!-- ### End: Displaying errors ###-->
+          </div>
+
+          <div>
+            <label>Régimen social</label>
+            <select
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              (change)="change($event)" id="taxSystem" formControlName="taxSystem">
+              <option value="" disabled="" selected="">Selecciona régimen fiscal</option>
+              <option *ngFor="let item of TaxSystemCatalog" value="{{item.id}}">{{item.name}}</option>
+            </select>
+          </div>
+
+
+          <div>
+            <label for="email">Correo electrónico</label>
+            <input type="text" id="email" name="email" formControlName="email" class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full
+            appearance-none rounded-lg border border-solid border-gray-300 bg-white
+            bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all
+            placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+            <!-- ### Start: Displaying errors ###-->
+            <div *ngFor="let error of errorMessages.invoiceCreateForm">
+              <ng-container *ngIf="emailInvoiceCreateForm!.errors!=null">
+                <ng-container *ngIf="emailInvoiceCreateForm!.errors[error.type]&&(emailInvoiceCreateForm!.touched)">
+                  <p class="text-red-500">{{error.message}}</p>
+                </ng-container>
+              </ng-container>
+            </div>
+            <!-- ### End: Displaying errors ###-->
+          </div>
+        </div>
+
+
+
+
+
+
+        <div>
+          <h2 class="font-bold">Productos</h2>
+          <!-- ############# HERE FORM ARRAY FOR items#############-->
+          <div formArrayName="items">
+            <h3 class="font-bold">FORM ARRAY FOR "itemsInvoiceCreateForm"</h3>
+            <div class="flex flex-column justify-center md:flex-row">
+              <button type="button"
+                class="grow  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                (click)="addItem()">+ Add</button>
+              <button type="button"
+                class="grow  bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
+                (click)="removeItem()">- Remove</button>
+            </div>
+
+            <div *ngFor="let item of items.controls; let i=index">
+              <div [formGroupName]="i">
+
+
+
+                <div><label for="sku">SKU</label>
+                  <input type="text" id="sku" name="sku" formControlName="sku" class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full
+                    appearance-none rounded-lg border border-solid border-gray-300 bg-white
+                    bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all
+                    placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                  <!-- ### Start: Displaying errors ###-->
+                  <div *ngFor="let error of errorMessages.invoiceCreateForm">
+                    <ng-container *ngIf="items.at(i).get('sku')?.errors!=null">
+                      <ng-container
+                        *ngIf="items.at(i).get('sku')?.errors![error.type]&&(items.at(i)!.get('sku')!.touched)">
+                        <p class="text-red-500">{{error.message}}</p>
+                      </ng-container>
+                    </ng-container>
+                  </div>
+                  <!-- ### End: Displaying errors ###-->
+                </div>
+                <div><label for="concept">Concepto</label>
+                  <input type="text" id="concept" name="concept" formControlName="concept" class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full
+                    appearance-none rounded-lg border border-solid border-gray-300 bg-white
+                    bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all
+                    placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                  <!-- ### Start: Displaying errors ###-->
+                  <div *ngFor="let error of errorMessages.invoiceCreateForm">
+                    <ng-container *ngIf="items.at(i).get('concept')?.errors!=null">
+                      <ng-container
+                        *ngIf="items.at(i).get('concept')?.errors![error.type]&&(items.at(i)!.get('concept')!.touched)">
+                        <p class="text-red-500">{{error.message}}</p>
+                      </ng-container>
+                    </ng-container>
+                  </div>
+                  <!-- ### End: Displaying errors ###-->
+                </div>
+                <div><label for="quantity">Cantidad</label>
+                  <input type="text" id="quantity" name="quantity" formControlName="quantity" class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full
+                    appearance-none rounded-lg border border-solid border-gray-300 bg-white
+                    bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all
+                    placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                  <!-- ### Start: Displaying errors ###-->
+                  <div *ngFor="let error of errorMessages.invoiceCreateForm">
+                    <ng-container *ngIf="items.at(i).get('quantity')?.errors!=null">
+                      <ng-container
+                        *ngIf="items.at(i).get('quantity')?.errors![error.type]&&(items.at(i)!.get('quantity')!.touched)">
+                        <p class="text-red-500">{{error.message}}</p>
+                      </ng-container>
+                    </ng-container>
+                  </div>
+                  <!-- ### End: Displaying errors ###-->
+                </div>
+                <div><label for="unitPrice">Precio unitario</label>
+                  <input type="text" id="unitPrice" name="unitPrice" formControlName="unitPrice" class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full
+                    appearance-none rounded-lg border border-solid border-gray-300 bg-white
+                    bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all
+                    placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                  <!-- ### Start: Displaying errors ###-->
+                  <div *ngFor="let error of errorMessages.invoiceCreateForm">
+                    <ng-container *ngIf="items.at(i).get('unitPrice')?.errors!=null">
+                      <ng-container
+                        *ngIf="items.at(i).get('unitPrice')?.errors![error.type]&&(items.at(i)!.get('unitPrice')!.touched)">
+                        <p class="text-red-500">{{error.message}}</p>
+                      </ng-container>
+                    </ng-container>
+                  </div>
+                  <!-- ### End: Displaying errors ###-->
+                </div>
+                <div><button type="button"
+                    class="grow  bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
+                    (click)="deleteItem(i)">Borrar</button></div>
+
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <div>
+        <button [disabled]="invoiceCreateForm.invalid" class="my-5 w-full" [ngClass]="!invoiceCreateForm.invalid ? '
+         bg-transparent hover:bg-blue-500 text-blue-700 font-semibold
+           hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent
+           rounded-full
+          ': '
+          bg-blue-500 text-white font-bold py-2 px-4 rounded-full opacity-50 cursor-not-allowed'">Send</button>
+      </div>
+    </form>
+
+
+
+
+  </div>
+
+</div>
